@@ -140,7 +140,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
             .setTitle(`Aktualizacja ${action}`)
             .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza ${steamhex}`)
             
-            .setFooter('ExperienceRP', logo)
+            .setFooter(timestamp, logo)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
