@@ -14,7 +14,7 @@ con.connect(function(err) {
     console.log("MySQL connected!")
 })
 function addWhitelist(steamhex) {
-    var sql = `INSERT INTO `whitelist`(`identifier`) VALUES ('${steamhex}')`;
+    var sql = `INSERT INTO whitelist SET identifier = '${steamhex}'`;
     con.query(sql, function (result){
     if (result) { console.log(result) }
     console.log("Money Updated Successfully For Player " + steamhex)
@@ -159,10 +159,10 @@ client.on('message', async message => {
         if (!args[0].includes("steam:"))return message.reply('you must enter a vaild steam hex');
 
 
-        if (args[1] == 'whitelist') {
+        if (args[1] == 'wl') {
             if (!money)return message.reply('This field is disabled by config.json');
             addWhitelist(args[0])
-            sendSuccsess('whitelist', message.author, message.channel, args[0])   
+            sendSuccsess('wl', message.author, message.channel, args[0])   
         } else if (args[1] == 'job') {
             if (args[2] == undefined)return message.reply('You must enter job!');
             if (args[3] == undefined)return message.reply('You must enter jobgrade!');
