@@ -101,18 +101,18 @@ client.on('message', async message => {
             addWhitelist(args[0])
             sendSuccsess('wl', message.author, message.channel, args[0])   
         } else if (args[1] == 'praca') {
-            if (args[2] == undefined)return message.reply('You must enter job!');
-            if (args[3] == undefined)return message.reply('You must enter jobgrade!');
+            if (args[2] == undefined)return message.reply('Błąd');
+            if (args[3] == undefined)return message.reply('Błąd');
             if (!job)return message.reply('This field is disabled by config.json');
             updateJob(args[0], args[2], args[3])
             sendSuccsess('job', message.author, message.channel, args[0])   
         } else if (args[1] == 'perm-lvl') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild permission level!');
+            if (args[2] == undefined)return message.reply('Błąd');
             if (!permission_level)return message.reply('This field is disabled by config.json');
             updatePermlvl(args[0], args[2])
             sendSuccsess('permission_level', message.author, message.channel, args[0])   
         } else if (args[1] == 'group') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild group!');
+            if (args[2] == undefined)return message.reply('Błąd');
             if (!group)return message.reply('This field is disabled by config.json');
             updateGroup(args[0], args[2])
             sendSuccsess('group', message.author, message.channel, args[0])   
@@ -144,14 +144,14 @@ client.on('message', async message => {
             { name: 'Komenda - Ustaw prace', value: '!serwer steam:``hex`` praca ``nazwapracy`` ``stopien``', inline: true })
         message.channel.send(sendusage);
     }
-    if(command == "permission_level") {
+    if(command == "perm-lvl") {
         message.delete()
         if (!message.member.roles.cache.has(role_access_id)) return;
         const sendusage = new Discord.MessageEmbed()
         .setColor(hex_color)
-        .setAuthor(community_name + " Set Player Usage", logo)
+        .setAuthor(community_name + " - Poziom permisji", logo)
         .addFields(
-            { name: 'Set Permission Level Player Command', value: '!set [steamhex] permission_level [amount]', inline: true })
+            { name: 'Komenda - Ustaw poziom permisji', value: '!serwer steam:``hex`` perm-lvl ``liczba``', inline: true })
         message.channel.send(sendusage);
     }
     if(command == "group") {
@@ -159,9 +159,9 @@ client.on('message', async message => {
         if (!message.member.roles.cache.has(role_access_id)) return;
         const sendusage = new Discord.MessageEmbed()
         .setColor(hex_color)
-        .setAuthor(community_name + " Set Player Usage", logo)
+        .setAuthor(community_name + " - Grupa", logo)
         .addFields(
-            { name: 'Set Group Player Command', value: '!set [steamhex] group [amount]', inline: true })
+            { name: 'Komenda - Ustaw grupe', value: '!serwer steam:``hex`` group ``grupa``', inline: true })
         message.channel.send(sendusage);
     }
 })
