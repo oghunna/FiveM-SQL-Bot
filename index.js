@@ -173,7 +173,7 @@ client.on('message', async message => {
         if (!args[0].includes("steam:"))return message.reply('you must enter a vaild steam hex');
 
 
-        if (args[1] == 'money') {
+        if (args[1] == 'gotowka') {
             if (args[2] == undefined)return message.reply('You must enter a vaild money amount!');
             if (!money)return message.reply('This field is disabled by config.json');
             updateMoney(args[0], args[2])
