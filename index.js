@@ -76,13 +76,10 @@ function sendcoms(chnl) {
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
     console.log("Made By Noam#2111 | Aizik#5555");
-    client.user.setPresence({
-        game: {
-            name: 'Use f!help',
-            type: "Playing",
-            url: "https://discordapp.com/"
-        }
-    });
+    client.user.setActivity("on your face", {
+        type: "WATCHING",
+        name: "itt"
+      });
 });
 
 client.on('message', async message => {
