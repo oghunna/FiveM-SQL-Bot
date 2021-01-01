@@ -75,8 +75,8 @@ function sendcoms(chnl) {
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
     console.log("Made By Noam#2111 | Aizik#5555");
-    bot.user.setStatus('dnd')
-    bot.user.setPresence({
+    client.user.setStatus('dnd')
+    client.user.setPresence({
         game: {
             name: 'Użyj !pomoc',
             type: "PLAYING"
