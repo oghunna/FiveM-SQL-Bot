@@ -106,7 +106,7 @@ function doRPKILL(steamhex, admin, chnl) {
     .setTitle('RP Kill Done Succsessfully!')
     .setDescription(`${admin.toString()}, Done RP Kill To Player: ${steamhex}`)
 	
-	.setFooter('ExperienceRP', logo);
+	.setFooter('Made By Aizik#5555 | Noam#2111', logo);
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
@@ -116,7 +116,7 @@ function doRPKILL(steamhex, admin, chnl) {
             .setTitle(`New RP Kill`)
             .setDescription(`${admin.toString()}, Done RP Kill To Player: ${steamhex}`)
             
-            .setFooter('ExperienceRP', logo)
+            .setFooter('Made By Aizik#5555 | Noam#2111', logo)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
@@ -130,7 +130,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
     .setTitle('Player Updated Succsessfully!')
     .setDescription(`${admin.toString()}, Updated **${action}** To Player: ${steamhex}`)
 	
-	.setFooter('ExperienceRP', logo);
+	.setFooter('Made By Aizik#5555 | Noam#2111', logo);
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
@@ -140,7 +140,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
             .setTitle(`New ${action} Update!`)
             .setDescription(`${admin.toString()}, Updated **${action}** To Player: ${steamhex}`)
             
-            .setFooter('ExperienceRP', logo)
+            .setFooter('Made By Aizik#5555 | Noam#2111', logo)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
@@ -154,13 +154,13 @@ function sendcoms(chnl) {
     .addFields(
         { name: 'Update Player Commands', value: ' \n``!money`` - Update Money Usage\n``!job`` - Update Job Usage\n``!bank`` - Update Bank Usage\n``!permission_level`` - Update Permission Level Usage\n``!group`` - Update Group Usage\n``!playername`` - Update Player Name Usage\n``!dateofbirth`` - Update Date Of Birth Usage\n``!sex`` - Update Sex Usage\n``!height`` - Update Height Usage\n``!phone_number`` - Update Phone Number Usage\n``!rpkill`` - Resets Player', inline: true })
     
-	.setFooter('ExperienceRP', logo);
+	.setFooter('Made By Noam#2111 | Aizik#5555', logo);
     chnl.send(sendusage);
 }
 
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
-    console.log("ExperienceRP");
+    console.log("Made By Noam#2111 | Aizik#5555");
 });
 
 client.on('message', async message => {
@@ -255,7 +255,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Money Player Command', value: '!set [steamhex] money [amount]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "job") {
@@ -279,7 +279,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Bank Player Command', value: '!set [steamhex] bank [amount]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "permission_level") {
@@ -291,7 +291,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Permission Level Player Command', value: '!set [steamhex] permission_level [amount]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "group") {
@@ -303,7 +303,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Group Player Command', value: '!set [steamhex] group [amount]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "playername") {
@@ -315,7 +315,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Player Name Command', value: '!set [steamhex] playername [firstname] [lastname]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "dateofbirth") {
@@ -327,7 +327,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Date Player Command', value: '!set [steamhex] date [mm-dd-yyyy]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "sex") {
@@ -339,7 +339,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Sex Player Command', value: '!set [steamhex] sex [m/f]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "height") {
@@ -351,7 +351,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Height Player Command', value: '!set [steamhex] height [amount]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
     if(command == "phone_number") {
@@ -363,7 +363,7 @@ client.on('message', async message => {
         .addFields(
             { name: 'Set Phone Number Player Command', value: '!set [steamhex] phone_number [number]', inline: true })
         
-        .setFooter('ExperienceRP', logo);
+        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
         message.channel.send(sendusage);
     }
 })
