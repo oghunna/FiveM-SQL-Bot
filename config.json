@@ -1,0 +1,26 @@
+{
+    "token": "Nzk0NjA3MzU1MzMyNzg4Mjc0.X-9RxA.AXXa3z9o6e3qXEwJfI6CRNUbhts",
+    "prefix": "!",
+    "logo":  "",
+    "hex_color": "#0099ff", 
+    "community_name": "ExperienceRP", 
+    "role_access_id": "775818043975532555",
+    "discord_logs_channel_id": "794388921378537492",
+    
+    "database_host": "151.80.27.157",
+    "database_user": "db25022",
+    "database_password": "0VwK15130X",
+    "database_base": "db25022",
+
+    "money": true,
+    "job": true,
+    "bank": true,
+    "permission_levl": true,
+    "group": true,
+    "playername": true,
+    "dateofbirth": true,
+    "sex": true,
+    "height": true,
+    "phone_number": true,
+    "rpkill": true
+}
