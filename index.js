@@ -76,13 +76,10 @@ function sendcoms(chnl) {
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
     console.log("Made By Noam#2111 | Aizik#5555");
-    client.user.setPresence({
-        status: "idle",  // You can show online, idle... Do not disturb is dnd
-        game: {
-            name: "!pomoc",  // The message shown
-            type: "PLAYING" // PLAYING, WATCHING, LISTENING, STREAMING,
-        }
-    });
+    client.user.setActivity("ExperienceRP", {
+        type: "WATCHING",
+        name: "!pomoc"
+      });
 });
 
 client.on('message', async message => {
