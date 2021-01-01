@@ -106,7 +106,7 @@ function doRPKILL(steamhex, admin, chnl) {
     .setTitle('RP Kill Done Succsessfully!')
     .setDescription(`${admin.toString()}, Done RP Kill To Player: ${steamhex}`)
 	
-	.setFooter('Made By Aizik#5555 | Noam#2111', logo);
+	.setFooter('ExperienceRP', logo);
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
@@ -116,7 +116,7 @@ function doRPKILL(steamhex, admin, chnl) {
             .setTitle(`New RP Kill`)
             .setDescription(`${admin.toString()}, Done RP Kill To Player: ${steamhex}`)
             
-            .setFooter('Made By Aizik#5555 | Noam#2111', logo)
+            .setFooter('ExperienceRP', logo)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
@@ -126,21 +126,21 @@ function doRPKILL(steamhex, admin, chnl) {
 function sendSuccsess(action, admin, chnl, steamhex) {
     const chnlsucc = new Discord.MessageEmbed()
 	.setColor(hex_color)
-	.setAuthor(`${community_name} Update Player System`, logo)
-    .setTitle('Player Updated Succsessfully!')
-    .setDescription(`${admin.toString()}, Updated **${action}** To Player: ${steamhex}`)
+	.setAuthor(`${community_name}`, logo)
+    .setTitle('Akcja wykonana pomyślnie!')
+    .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza **${steamhex}**`)
 	
-	.setFooter('Made By Aizik#5555 | Noam#2111', logo);
+	.setFooter('ExperienceRP', logo);
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
     .then(channel => {
         const SuccEmbed = new Discord.MessageEmbed()
-            .setAuthor(`${community_name} Update Player Logs`, logo)
-            .setTitle(`New ${action} Update!`)
-            .setDescription(`${admin.toString()}, Updated **${action}** To Player: ${steamhex}`)
+            .setAuthor(`${community_name} Log Bota`, logo)
+            .setTitle(`Akcja wykonana pomyślnie!`)
+            .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza **${steamhex}**`)
             
-            .setFooter('Made By Aizik#5555 | Noam#2111', logo)
+            .setFooter('ExperienceRP', logo)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
