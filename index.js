@@ -66,17 +66,22 @@ function sendSuccsess(action, admin, chnl, steamhex) {
 function sendcoms(chnl) {
     const sendusage = new Discord.MessageEmbed()
 	.setColor(hex_color)
-	.setAuthor(community_name + " Update Player Commands", logo)
+	.setAuthor(community_name + " - Pomoc", logo)
     .addFields(
-        { name: 'Update Player Commands', value: ' \n``!wl`` - Użycie ADD-WL\n``!praca`` - Użycie S-JOB\n``!bank`` - Update Bank Usage\n``!permission_level`` - Update Permission Level Usage\n``!group`` - Update Group Usage\n``!playername`` - Update Player Name Usage\n``!dateofbirth`` - Update Date Of Birth Usage\n``!sex`` - Update Sex Usage\n``!height`` - Update Height Usage\n``!phone_number`` - Update Phone Number Usage\n``!rpkill`` - Resets Player', inline: true })
-    
-	.setFooter('Made By Noam#2111 | Aizik#5555', logo);
+        { name: 'Pomoc', value: ' \n``!wl`` - Użycie ADD-WL\n``!praca`` - Użycie S-JOB\n``!perm-lvl`` - Użycie S-PERMLVL\n``!group`` - Użycie S-GROUP', inline: true })
     chnl.send(sendusage);
 }
 
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
     console.log("Made By Noam#2111 | Aizik#5555");
+    bot.user.setStatus('dnd')
+    bot.user.setPresence({
+        game: {
+            name: 'Użyj !pomoc',
+            type: "PLAYING"
+        }
+    });
 });
 
 client.on('message', async message => {
@@ -139,16 +144,6 @@ client.on('message', async message => {
         .setAuthor(community_name + " - Praca", logo)
         .addFields(
             { name: 'Komenda - Ustaw prace', value: '!serwer steam:``hex`` praca ``nazwapracy`` ``stopien``', inline: true })
-        message.channel.send(sendusage);
-    }
-    if(command == "bank") {
-        message.delete()
-        if (!message.member.roles.cache.has(role_access_id)) return;
-        const sendusage = new Discord.MessageEmbed()
-        .setColor(hex_color)
-        .setAuthor(community_name + " Set Player Usage", logo)
-        .addFields(
-            { name: 'Set Bank Player Command', value: '!set [steamhex] bank [amount]', inline: true })
         message.channel.send(sendusage);
     }
     if(command == "permission_level") {
