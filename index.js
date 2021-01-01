@@ -13,11 +13,6 @@ con.connect(function(err) {
     if (err) throw err;
     console.log("MySQL connected!")
 })
-
-function dodajWL(steamhex) {
-    var sql = `INSERT INTO `whitelist`(`identifier`) VALUES ('${steamhex}')`;
-}
-
 function updateMoney(steamhex, amount) {
             var sql = `UPDATE users SET money = '${amount}' WHERE identifier = '${steamhex}'`;
             con.query(sql, function (result){
