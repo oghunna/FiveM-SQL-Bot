@@ -1,69 +1,3 @@
-/*
-
-
-
-
-
-
-
-
-                        HI, IF YOU ARE HERE.
-                        THEN PLEASE LEAVE
-                            THERE IS SOMEGUYS CALLED 
-                            NOAM#2111 AND AIZIK#5555
-                            THEY WORKED ONE DAY FOR THAT BEUTIFULL BOT
-                            AND THEY DON'T WANT SOMEBODY WILL TAKE THERE CREDIT.                      MADE BY AIZIK#5555 AND NOAM#2111
-                                IF YOU WANT TO REMOVE CREDIT AT LEAST BE NICE MAN AND NOT THE "BAD ISRAELI" AS WE KNOWN,
-                                AND TELL US FIRST, WE WILL ALWAYS AGREE WE JUST WANT TO SEE WHOS USING OUR BOT :)
-                                    I HOPE THAT HELPS A LOT OF YOU EVEN WORLDWIDE.
-                                            MADE                    MADE
-                                            BY                      BY
-                                            AIZIK                   AIZIK
-                                            #5555                   #5555
-                                            AND                     AND
-                                            MADE                    MADE
-                                            BY                      BY
-                                            NOAM                   NOAM
-                                            #2111                   #2111
-
-
-
-                                            BTW I REALLY THINK I DREW HERE SOMETHING LOL
-                                                        AND AS YOU KNOW:
-
-                                                        MADE BY NOAM#2111
-                                                        MADE BY AIZIK#5555
-                                                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ["MESSAGE", "USER", "REACTION"] });
 const { token, prefix, logo, hex_color, community_name, role_access_id, discord_logs_channel_id, database_host, database_user, database_password, database_base, money,  job, bank, permission_level, group, playername, dateofbirth, sex, height, phone_number, rpkill} = require('./config.json');
@@ -79,6 +13,10 @@ con.connect(function(err) {
     if (err) throw err;
     console.log("MySQL connected!")
 })
+
+function dodajWL(steamhex) {
+    var sql = `INSERT INTO `whitelist`(`identifier`) VALUES ('${steamhex}')`;
+}
 
 function updateMoney(steamhex, amount) {
             var sql = `UPDATE users SET money = '${amount}' WHERE identifier = '${steamhex}'`;
@@ -330,11 +268,11 @@ client.on('message', async message => {
         if (!message.member.roles.cache.has(role_access_id)) return;
         const sendusage = new Discord.MessageEmbed()
         .setColor(hex_color)
-        .setAuthor(community_name + " Set Player Usage", logo)
+        .setAuthor(community_name + " - Praca", logo)
         .addFields(
-            { name: 'Set Job Player Command', value: '!set [steamhex] job [jobname] [jobgrade]', inline: true })
+            { name: 'Komenda - Ustaw prace', value: '!set [steamhex] job [jobname] [jobgrade]', inline: true })
         
-        .setFooter('Made By Noam#2111 | Aizik#5555', logo);
+        .setFooter('ExperienceRP', logo);
         message.channel.send(sendusage);
     }
     if(command == "bank") {
