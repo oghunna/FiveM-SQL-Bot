@@ -126,21 +126,21 @@ function doRPKILL(steamhex, admin, chnl) {
 function sendSuccsess(action, admin, chnl, steamhex) {
     const chnlsucc = new Discord.MessageEmbed()
 	.setColor(hex_color)
-	.setAuthor(`${community_name}`, logo)
+	.setAuthor(`${community_name}`)
     .setTitle('Akcja wykonana pomyślnie!')
     .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza ${steamhex}`)
 	
-	.setFooter('ExperienceRP', logo);
+	.setFooter('ExperienceRP');
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
     .then(channel => {
         const SuccEmbed = new Discord.MessageEmbed()
-            .setAuthor(`${community_name} - BotLog`, logo)
+            .setAuthor(`${community_name} - BotLog`)
             .setTitle(`Aktualizacja ${action}`)
             .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza ${steamhex}`)
             
-            .setFooter(timestamp, logo)
+            .setFooter(logo)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
