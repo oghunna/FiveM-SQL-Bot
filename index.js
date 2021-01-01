@@ -128,7 +128,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
 	.setColor(hex_color)
 	.setAuthor(`${community_name}`, logo)
     .setTitle('Akcja wykonana pomyślnie!')
-    .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza ${steamhex}`)
+    .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza **${steamhex}**`)
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
@@ -136,7 +136,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
         const SuccEmbed = new Discord.MessageEmbed()
             .setAuthor(`${community_name} - BotLog`, logo)
             .setTitle(`Aktualizacja ${action}`)
-            .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza ${steamhex}`)
+            .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza** ${steamhex}**`)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
