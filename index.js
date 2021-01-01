@@ -95,8 +95,8 @@ client.on('message', async message => {
     if (command == "serwer") {
         message.delete()
         if (!message.member.roles.cache.has(role_access_id)) return;
-        if (args[0] == undefined)return message.reply('you must enter a vaild steam hex');
-        if (!args[0].includes("steam:"))return message.reply('you must enter a vaild steam hex');
+        if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex!');
+        if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex!');
 
 
         if (args[1] == 'wl') {
