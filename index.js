@@ -13,6 +13,13 @@ con.connect(function(err) {
     if (err) throw err;
     console.log("MySQL connected!")
 })
+function addWhitelist(steamhex) {
+    var sql = `INSERT INTO `whitelist`(`identifier`) VALUES ('${steamhex}')`;
+    con.query(sql, function (result){
+    if (result) { console.log(result) }
+    console.log("Money Updated Successfully For Player " + steamhex)
+    });
+}
 function updateMoney(steamhex, amount) {
             var sql = `UPDATE users SET money = '${amount}' WHERE identifier = '${steamhex}'`;
             con.query(sql, function (result){
@@ -55,32 +62,11 @@ function updatePlayerName(steamhex, firstname, lastname) {
     console.log("Player Name Successfully For Player " + steamhex)
 });
 }
-function updateDate(steamhex, dateofbirth) {
-    var sql = `UPDATE users SET dateofbirth = '${dateofbirth}' WHERE identifier = '${steamhex}'`;
-    con.query(sql, function (result){
-    if (result) { console.log(result) }
-    console.log("Date Of Birth Successfully For Player " + steamhex)
-});
-}
-function updateSex(steamhex, sex) {
-    var sql = `UPDATE users SET sex = '${sex}' WHERE identifier = '${steamhex}'`;
-    con.query(sql, function (result){
-    if (result) { console.log(result) }
-    console.log("Sex Successfully For Player " + steamhex)
-});
-}
 function updateHeight(steamhex, height) {
     var sql = `UPDATE users SET height = '${height}' WHERE identifier = '${steamhex}'`;
     con.query(sql, function (result){
     if (result) { console.log(result) }
     console.log("Height Successfully For Player " + steamhex)
-});
-}
-function updatePhoneNum(steamhex, phone_number) {
-    var sql = `UPDATE users SET phone_number = '${phone_number}' WHERE identifier = '${steamhex}'`;
-    con.query(sql, function (result){
-    if (result) { console.log(result) }
-    console.log("Phone Number Successfully For Player " + steamhex)
 });
 }
 function doRPKILL(steamhex, admin, chnl) {
@@ -173,22 +159,16 @@ client.on('message', async message => {
         if (!args[0].includes("steam:"))return message.reply('you must enter a vaild steam hex');
 
 
-        if (args[1] == 'gotowka') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild money amount!');
+        if (args[1] == 'whitelist') {
             if (!money)return message.reply('This field is disabled by config.json');
-            updateMoney(args[0], args[2])
-            sendSuccsess('money', message.author, message.channel, args[0])   
+            addWhitelist(args[0])
+            sendSuccsess('whitelist', message.author, message.channel, args[0])   
         } else if (args[1] == 'job') {
             if (args[2] == undefined)return message.reply('You must enter job!');
             if (args[3] == undefined)return message.reply('You must enter jobgrade!');
             if (!job)return message.reply('This field is disabled by config.json');
             updateJob(args[0], args[2], args[3])
             sendSuccsess('job', message.author, message.channel, args[0])   
-        } else if (args[1] == 'bank') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild bank amount!');
-            if (!bank)return message.reply('This field is disabled by config.json');
-            updateBank(args[0], args[2])
-            sendSuccsess('bank', message.author, message.channel, args[0])  
         } else if (args[1] == 'permission_level') {
             if (args[2] == undefined)return message.reply('You must enter a vaild permission level!');
             if (!permission_level)return message.reply('This field is disabled by config.json');
@@ -205,27 +185,7 @@ client.on('message', async message => {
             if (!playername)return message.reply('This field is disabled by config.json');
             updatePlayerName(args[0], args[2], args[3])
             sendSuccsess('playername', message.author, message.channel, args[0])   
-        } else if (args[1] == 'dateofbirth') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild date of birth!');
-            if (!dateofbirth)return message.reply('This field is disabled by config.json');
-            updateDate(args[0], args[2])
-            sendSuccsess('dateofbirth', message.author, message.channel, args[0])   
-        } else if (args[1] == 'sex') {
-            if (args[2] != 'm' && args[2] != 'f')return message.reply('You must enter a vaild sex!');
-            if (!sex)return message.reply('This field is disabled by config.json');
-            updateSex(args[0], args[2])
-            sendSuccsess('sex', message.author, message.channel, args[0])   
-        } else if (args[1] == 'height') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild height!');
-            if (!height)return message.reply('This field is disabled by config.json');
-            updateHeight(args[0], args[2])
-            sendSuccsess('height', message.author, message.channel, args[0])   
-        } else if (args[1] == 'phone_number') {
-            if (args[2] == undefined)return message.reply('You must enter a vaild phone number!');
-            if (!phone_number)return message.reply('This field is disabled by config.json');
-            updatePhoneNum(args[0], args[2])
-            sendSuccsess('phone_number', message.author, message.channel, args[0])   
-        }
+        } 
     }
 
     if(command == "coms") {
