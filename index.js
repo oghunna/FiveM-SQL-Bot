@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ["MESSAGE", "USER", "REACTION"] });
 const { token, prefix, logo, hex_color, community_name, role_access_id, discord_logs_channel_id, database_host, database_user, database_password, database_base, money,  job, bank, permission_level, group, playername, dateofbirth, sex, height, phone_number, rpkill} = require('./config.json');
 var mysql = require('mysql')
+const bot = new Discord.Client();
 
 var con = mysql.createConnection({
     host: database_host,
@@ -75,8 +76,8 @@ function sendcoms(chnl) {
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
     console.log("Made By Noam#2111 | Aizik#5555");
-    client.user.setStatus('dnd')
-    client.user.setPresence({
+    bot.user.setStatus('dnd')
+    bot.user.setPresence({
         game: {
             name: 'Użyj !pomoc',
             type: "PLAYING"
