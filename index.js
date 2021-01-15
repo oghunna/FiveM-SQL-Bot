@@ -12,8 +12,9 @@ var con = mysql.createConnection({
 })
 con.connect(function(err) {
     if (err) throw err;
-    console.log("MySQL connected!")
+    console.log("MySQL połączone!")
 })
+
 function addWhitelist(steamhex) {
     var sql = `INSERT INTO whitelist SET identifier = '${steamhex}'`;
     con.query(sql, function (result){
@@ -21,27 +22,7 @@ function addWhitelist(steamhex) {
     console.log("Money Updated Successfully For Player " + steamhex)
     });
 }
-function updateJob(steamhex, job, grade) {
-    var sql = `UPDATE users SET job = '${job}', job_grade = '${grade}' WHERE identifier = '${steamhex}'`;
-    con.query(sql, function (result){
-    if (result) { console.log(result) }
-    console.log("Job Updated Successfully For Player " + steamhex)
-});
-}
-function updatePermlvl(steamhex, prmlvl) {
-    var sql = `UPDATE users SET permission_level = '${prmlvl}' WHERE identifier = '${steamhex}'`;
-    con.query(sql, function (result){
-    if (result) { console.log(result) }
-    console.log("Permission Level Updated Successfully For Player " + steamhex)
-});
-}
-function updateGroup(steamhex, group) {
-    var sql = `UPDATE users SET group = '${group}' WHERE identifier = '${steamhex}'`;
-    con.query(sql, function (result){
-    if (result) { console.log(result) }
-    console.log("Group Updated Successfully For Player " + steamhex)
-});
-}
+
 
 
 function sendSuccsess(action, admin, chnl, steamhex) {
@@ -49,7 +30,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
 	.setColor(hex_color)
 	.setAuthor(`${community_name}`, logo)
     .setTitle('Akcja wykonana pomyślnie!')
-    .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza **${steamhex}**`)
+    .setDescription(`${admin.toString()}, Dodano **${steamhex}** do whitelist'y.`)
     chnl.send(chnlsucc);
 
     client.channels.fetch(discord_logs_channel_id)
@@ -57,25 +38,14 @@ function sendSuccsess(action, admin, chnl, steamhex) {
         const SuccEmbed = new Discord.MessageEmbed()
             .setAuthor(`${community_name} - BotLog`, logo)
             .setTitle(`Aktualizacja ${action}`)
-            .setDescription(`${admin.toString()}, Zaktualizowano **${action}** dla gracza** ${steamhex}**`)
+            .setDescription(`${admin.toString()}, Dodał ${steamhex}** do whitelist'y.`)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
 }
 
-
-function sendcoms(chnl) {
-    const sendusage = new Discord.MessageEmbed()
-	.setColor(hex_color)
-	.setAuthor(community_name + " - Pomoc", logo)
-    .addFields(
-        { name: 'Pomoc', value: ' \n``!wl`` - Użycie ADD-WL\n``!praca`` - Użycie S-JOB\n``!perm-lvl`` - Użycie S-PERMLVL\n``!group`` - Użycie S-GROUP', inline: true })
-    chnl.send(sendusage);
-}
-
 client.on('ready', () => {
     console.log(community_name + "'s Update Player BOT has been loaded.");
-    console.log("Made By Noam#2111 | Aizik#5555");
     client.user.setActivity("ExperienceRP", {
         type: "WATCHING",
         name: "!pomoc"
@@ -89,42 +59,17 @@ client.on('message', async message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if (command == "serwer") {
+    if (command == "wl") {
         message.delete()
         if (!message.member.roles.cache.has(role_access_id)) return;
-        if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex!');
-        if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex!');
-
-
-        if (args[1] == 'wl') {
-            if (!money)return message.reply('This field is disabled by config.json');
-            addWhitelist(args[0])
-            sendSuccsess('wl', message.author, message.channel, args[0])   
-        } else if (args[1] == 'praca') {
-            if (args[2] == undefined)return message.reply('Błąd');
-            if (args[3] == undefined)return message.reply('Błąd');
-            if (!job)return message.reply('This field is disabled by config.json');
-            updateJob(args[0], args[2], args[3])
-            sendSuccsess('job', message.author, message.channel, args[0])   
-        } else if (args[1] == 'perm-lvl') {
-            if (args[2] == undefined)return message.reply('Błąd');
-            if (!permission_level)return message.reply('This field is disabled by config.json');
-            updatePermlvl(args[0], args[2])
-            sendSuccsess('permission_level', message.author, message.channel, args[0])   
-        } else if (args[1] == 'group') {
-            if (args[2] == undefined)return message.reply('Błąd');
-            if (!group)return message.reply('This field is disabled by config.json');
-            updateGroup(args[0], args[2])
-            sendSuccsess('group', message.author, message.channel, args[0])   
-        }
+        if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex! steam:hex');
+        if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex! steam:hex');
+        if (!money)return message.reply('This field is disabled by config.json');
+        addWhitelist(args[0])
+        sendSuccsess('wl', message.author, message.channel, args[0])    
     }
 
     if(command == "pomoc") {
-        message.delete()
-        if (!message.member.roles.cache.has(role_access_id)) return;
-        sendcoms(message.channel)
-    }
-    if(command == "wl") {
         message.delete()
         if (!message.member.roles.cache.has(role_access_id)) return;
         const sendusage = new Discord.MessageEmbed()
@@ -132,36 +77,6 @@ client.on('message', async message => {
         .setAuthor(community_name + " - WhiteList", logo)
         .addFields(
             { name: 'Komenda - Dodaj do whitelist', value: '!serwer steam:``hex`` wl', inline: true })
-        message.channel.send(sendusage);
-    }
-    if(command == "praca") {
-        message.delete()
-        if (!message.member.roles.cache.has(role_access_id)) return;
-        const sendusage = new Discord.MessageEmbed()
-        .setColor(hex_color)
-        .setAuthor(community_name + " - Praca", logo)
-        .addFields(
-            { name: 'Komenda - Ustaw prace', value: '!serwer steam:``hex`` praca ``nazwapracy`` ``stopien``', inline: true })
-        message.channel.send(sendusage);
-    }
-    if(command == "perm-lvl") {
-        message.delete()
-        if (!message.member.roles.cache.has(role_access_id)) return;
-        const sendusage = new Discord.MessageEmbed()
-        .setColor(hex_color)
-        .setAuthor(community_name + " - Poziom permisji", logo)
-        .addFields(
-            { name: 'Komenda - Ustaw poziom permisji', value: '!serwer steam:``hex`` perm-lvl ``liczba``', inline: true })
-        message.channel.send(sendusage);
-    }
-    if(command == "group") {
-        message.delete()
-        if (!message.member.roles.cache.has(role_access_id)) return;
-        const sendusage = new Discord.MessageEmbed()
-        .setColor(hex_color)
-        .setAuthor(community_name + " - Grupa", logo)
-        .addFields(
-            { name: 'Komenda - Ustaw grupe', value: '!serwer steam:``hex`` group ``grupa``', inline: true })
         message.channel.send(sendusage);
     }
 })
