@@ -61,8 +61,8 @@ client.on('message', async message => {
 
     if (command == "wl") {
         if (!message.member.roles.cache.has(role_access_id)) return;
-        if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex! steam:hex');
-        if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex! steam:hex');
+        if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex! ```steam:hex```');
+        if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex! ```steam:hex```');
         if (!money)return message.reply('This field is disabled by config.json');
         addWhitelist(args[0])
         sendSuccsess('wl', message.author, message.channel, args[0])    
