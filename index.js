@@ -38,7 +38,7 @@ function sendSuccsess(action, admin, chnl, steamhex) {
         const SuccEmbed = new Discord.MessageEmbed()
             .setAuthor(`${community_name} - BotLog`, logo)
             .setTitle(`Aktualizacja ${action}`)
-            .setDescription(`${admin.toString()}, Dodał ${steamhex}** do whitelist'y.`)
+            .setDescription(`${admin.toString()}, Dodał **${steamhex}** do whitelist'y.`)
             .setColor(hex_color);
         channel.send(SuccEmbed);
     })
@@ -60,7 +60,6 @@ client.on('message', async message => {
     const command = args.shift().toLowerCase();
 
     if (command == "wl") {
-        message.delete()
         if (!message.member.roles.cache.has(role_access_id)) return;
         if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex! steam:hex');
         if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex! steam:hex');
@@ -70,13 +69,12 @@ client.on('message', async message => {
     }
 
     if(command == "pomoc") {
-        message.delete()
         if (!message.member.roles.cache.has(role_access_id)) return;
         const sendusage = new Discord.MessageEmbed()
         .setColor(hex_color)
         .setAuthor(community_name + " - WhiteList", logo)
         .addFields(
-            { name: 'Komenda - Dodaj do whitelist', value: '!serwer steam:``hex`` wl', inline: true })
+            { name: 'Komenda - Dodaj do whitelist', value: '!wl steam:``hex``', inline: true })
         message.channel.send(sendusage);
     }
 })
