@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ["MESSAGE", "USER", "REACTION"] });
-const { token, prefix, logo, hex_color, community_name, role_access_id, discord_logs_channel_id, database_host, database_user, database_password, database_base, money,  job, bank, permission_level, group, playername, dateofbirth, sex, height, phone_number, rpkill} = require('./config.json');
+const { token, prefix, logo, hex_color, community_name, role_access_id, discord_logs_channel_id, database_host, database_user, database_password, database_base} = require('./config.json');
 var mysql = require('mysql')
 const bot = new Discord.Client();
 
@@ -19,7 +19,7 @@ function addWhitelist(steamhex) {
     var sql = `INSERT INTO whitelist SET identifier = '${steamhex}'`;
     con.query(sql, function (result){
     if (result) { console.log(result) }
-    console.log("Money Updated Successfully For Player " + steamhex)
+    console.log("WL ADD - " + steamhex)
     });
 }
 
@@ -63,7 +63,6 @@ client.on('message', async message => {
         if (!message.member.roles.cache.has(role_access_id)) return;
         if (args[0] == undefined)return message.reply('Wprowadz prawidłowy hex! ```steam:hex```');
         if (!args[0].includes("steam:"))return message.reply('Wprowadz prawidłowy hex! ```steam:hex```');
-        if (!money)return message.reply('This field is disabled by config.json');
         addWhitelist(args[0])
         sendSuccsess('wl', message.author, message.channel, args[0])    
     }
